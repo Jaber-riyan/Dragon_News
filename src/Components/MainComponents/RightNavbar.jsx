@@ -1,9 +1,15 @@
-import React from 'react';
+import FindOnSocialMedia from '../FindOnSocialMedia';
+import SocialLogin from '../SocialLogin';
 
 const RightNavbar = () => {
     return (
         <div>
-            <h2 className="text-[#403F3F] font-semibold text-[1.1rem]">Login With</h2>
+            <div className='mb-8'>
+                <SocialLogin></SocialLogin>
+            </div>
+            <div>
+                <FindOnSocialMedia></FindOnSocialMedia>
+            </div>
         </div>
     );
 };
