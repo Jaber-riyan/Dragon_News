@@ -12,7 +12,7 @@ const Navbar = () => {
         signOutUser()
             .then(result => {
                 console.log(result);
-                toast.success("Logout Successful.");
+                toast.info("Logout Successfully.");
                 navigate('/auth/login');
             })
             .catch(error => {
@@ -41,7 +41,7 @@ const Navbar = () => {
                 {
                     user ?
                         <div className="avatar cursor-pointer">
-                            <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
+                            <div className="ring-gray-500 ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
                                 <img className="rounded-full w-12 border-2 h-12 object-cover" src={user ? user.photoURL : userLogo} alt="" />
 
                             </div>

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { FiMail, FiLock } from 'react-icons/fi';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Authentication/Authentication';
 import { toast } from 'react-toastify';
 import auth from '../../Firebase/Firebase.init';
@@ -8,6 +8,8 @@ import auth from '../../Firebase/Firebase.init';
 const Login = () => {
     const { signInUser, setUser } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+    console.log(location);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -23,8 +25,8 @@ const Login = () => {
         signInUser(email, password)
             .then(result => {
                 console.log(result.user);
-                toast.success("Successfully Login.");
-                navigate('/');
+                toast.success("Login Successfully.");
+                navigate(location?.state || '/');
             })
             .catch(error => {
                 const errorCode = error.code.split("auth/")[1];
