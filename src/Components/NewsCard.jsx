@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import bookmarks from '../assets/bookmarks.png';
 import shareIcon from '../assets/shareicon.png';
 import view from '../assets/view.png'
+import { FaEye } from 'react-icons/fa';
 
 const NewsCard = ({news}) => {
     const {author, image_url, details, total_view, rating, title} = news;
@@ -46,8 +47,8 @@ const NewsCard = ({news}) => {
                     </div>
                 </div>
                 <div className='flex items-center gap-2'>
+                    <FaEye />
                     <p className='text-[#706F6F]'>{total_view}</p>
-                    <img className='w-5 h-3' src={view} alt="" />
                 </div>
             </div>
         </div>
