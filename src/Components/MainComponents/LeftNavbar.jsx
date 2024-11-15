@@ -20,7 +20,7 @@ const LeftNavbar = () => {
             <div className="flex flex-col gap-3">
                 {
                     categories.map(category => <NavLink to={`/category/${category.category_id}`} key={category.category_id} className={({ isActive }) =>
-                        isActive ? "text-[#706F6F] font-bold px-10 py-4 bg-[#E7E7E7] rounded-md" : "text-[#9c9c9c] font-semibold px-12 py-3 bg-[#E7E7E7]"}>{category.category_name}</NavLink>)
+                        isActive ? "text-[#706F6F] font-semibold px-10 py-4 bg-[#E7E7E7] rounded-md" : "text-[#706F6F] font-semibold px-10 py-4"}>{category.category_name}</NavLink>)
                 }
             </div>
 

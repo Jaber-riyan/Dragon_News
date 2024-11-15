@@ -1,11 +1,12 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const AuthContext = createContext();
 const Authentication = ({ children }) => {
-    const name = 'jaber';
+    const [user, setUser] = useState(null);
 
     const authInfo = {
-        name
+        user,
+        setUser,
     }
 
     return (
