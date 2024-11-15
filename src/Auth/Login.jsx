@@ -1,13 +1,47 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FiMail, FiLock } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Authentication/Authentication';
+import { toast } from 'react-toastify';
+import auth from '../../Firebase/Firebase.init';
 
 const Login = () => {
+    const { signInUser, setUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = new FormData(e.target);
+        const email = form.get('email');
+        const password = form.get('password');
+
+        if (password.length < 6) {
+            toast.error("Password Should Be 6 Character.");
+            return;
+        }
+
+        signInUser(email, password)
+            .then(result => {
+                console.log(result.user);
+                toast.success("Successfully Login.");
+                navigate('/');
+            })
+            .catch(error => {
+                const errorCode = error.code.split("auth/")[1];
+                const formattedError = errorCode
+                    .split("-")
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ");
+                toast.error(formattedError);
+            })
+        // e.target.reset();
+        // navigate('/auth/login');
+    }
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="w-full max-w-md py-20 px-8 space-y-6 bg-white shadow-lg">
+            <form onSubmit={handleSubmit} className="w-full max-w-md py-20 px-8 space-y-6 bg-white shadow-lg">
                 <h2 className="text-2xl font-semibold text-center text-gray-800">Login your account</h2>
-                
+
                 <div className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium text-gray-700" htmlFor="email">
@@ -41,6 +75,11 @@ const Login = () => {
                         </div>
                     </div>
                 </div>
+                <p className="mt-4 text-sm text-gray-600">
+                    <Link className="underline">
+                        Forgat Password?
+                    </Link>
+                </p>
 
                 <button className="w-full py-2 mt-4 text-white bg-gray-800 rounded-md hover:bg-gray-900">
                     Login
@@ -52,7 +91,7 @@ const Login = () => {
                         Register
                     </Link>
                 </p>
-            </div>
+            </form>
         </div>
     );
 };

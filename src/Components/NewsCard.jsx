@@ -3,10 +3,11 @@ import bookmarks from '../assets/bookmarks.png';
 import shareIcon from '../assets/shareicon.png';
 import view from '../assets/view.png'
 import { FaEye } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
-const NewsCard = ({news}) => {
-    const {author, image_url, details, total_view, rating, title} = news;
-    const {name,published_date,img} = author;
+const NewsCard = ({ news }) => {
+    const { author, image_url, details, total_view, rating, title, _id } = news;
+    const { name, published_date, img } = author;
     const [readMoreDetails, setReadMoreDetails] = useState(false);
 
 
@@ -28,9 +29,11 @@ const NewsCard = ({news}) => {
             <div className='px-4'>
                 <h2 className='text-[#403F3F] font-bold text-xl mb-5'>{title}</h2>
                 <div className='mb-8'>
-                    <img className='w-full h-full object-cover' src={image_url} alt="" />
+                    <Link to={`/news/${_id}`}>
+                        <img className='w-full h-full object-cover' src={image_url} alt="" />
+                    </Link>
                 </div>
-                <p className='text-[#706F6F] font-medium'>{readMoreDetails ? details : `${details.slice(0,150)}....`} <button className='text-[#F75B5F] font-bold' onClick={()=>setReadMoreDetails(!readMoreDetails)}>{readMoreDetails ? 'Show Less': 'Show More'}</button></p>
+                <p className='text-[#706F6F] font-medium'>{readMoreDetails ? details : `${details.slice(0, 150)}....`} <button className='text-[#F75B5F] font-bold' onClick={() => setReadMoreDetails(!readMoreDetails)}>{readMoreDetails ? 'Show Less' : 'Show More'}</button></p>
             </div>
             <div className="divider"></div>
             <div className='flex justify-between items-center px-4'>
