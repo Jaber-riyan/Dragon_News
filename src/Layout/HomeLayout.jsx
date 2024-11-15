@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import Header from "../Components/Header";
 import LatestNews from "../Components/LatestNews";
 import LeftNavbar from "../Components/MainComponents/LeftNavbar";
@@ -22,7 +23,8 @@ const HomeLayout = () => {
                     <LeftNavbar></LeftNavbar>
                 </aside>
                 <section className="col-span-6">
-                    <MainContent></MainContent>
+                    <h2 className="text-[#403F3F] font-semibold text-[1.1rem]">Dragon News Home</h2>
+                    <Outlet></Outlet>
                 </section>
                 <aside className="col-span-3">
                     <RightNavbar></RightNavbar>
